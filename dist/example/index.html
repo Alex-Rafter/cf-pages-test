@@ -8,10 +8,22 @@
 </head>
 <body>
     <section class="container py-5 text-center">
-        <p class="fs-3">A simple test of CF Pages</p>
+        <p id="overwriteMe" class="fs-3">A simple example test of CF Pages</p>
         <p>Having a test of whether the dev branch has its own deployment</p>
         <p>Hi again</p>
         <p>yes</p>
     </section>
+    <script>
+        async function getMsg() {
+            const resp = await fetch('/api/message');
+            const data = await resp.json();
+            const msg = data.msg;
+            const overwriteMe = document.getElementById('overwriteMe');
+            overwriteMe.innerText = msg;
+        }
+        window.addEventListener('DOMContentLoaded', (event) => {
+            getMsg();
+        });
+    </script>
 </body>
 </html>
